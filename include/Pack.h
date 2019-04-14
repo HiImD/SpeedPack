@@ -1,5 +1,5 @@
-#ifndef PACK
-#define PACK
+#ifndef PACK_H_
+#define PACK_H_
 
 
 #include "BaseObj.h"
@@ -7,17 +7,15 @@
 
 class Pack: public BaseObj{
 private:
-    int row, col;
 
 protected:
 
 public:
     Pack();
     virtual ~Pack();
-
-    virtual int type() const = 0;
-    virtual const char* name() const = 0;
-    virtual void init();
+    virtual OBJTYPE type() const;
+    virtual const char* name() const;
+    virtual void init() = 0;
     virtual void HandleInputEvents(SDL_Event &events) = 0;
     
 

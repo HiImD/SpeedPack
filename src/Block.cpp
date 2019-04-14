@@ -9,3 +9,11 @@ Block::~Block(){
 
 }
 
+OBJTYPE Block::type() const {
+    return OBJTYPE::BLOCK;
+}
+
+const char* Block::name() const {
+    return "Block";
+}
+

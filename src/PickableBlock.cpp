@@ -1,16 +1,18 @@
 #include "PickableBlock.h"
 
-PickableBlock::PickableBlock(){
-    loadImg("src/img_src/active_block_92x92.png");
+PickableBlock::PickableBlock(bool answer){
+    rightAnswer = answer;
+    loadImg(IMGPATH::BLOCK::PICKABLE);
+    setRect(SIZE::BLOCK::PICKABLEBLOCK);
     visible = true;
 }
 
 PickableBlock::~PickableBlock(){
-
+    
 }
 
-int PickableBlock::type() const{
-    return 1;
+OBJTYPE PickableBlock::type() const{
+    return OBJTYPE::PICKABLEBLOCK;
 }
 
 const char* PickableBlock::name() const{
@@ -28,3 +30,6 @@ void PickableBlock::Show(){
         visible = true;
 }
 
+bool PickableBlock::getAnswer(){
+    return rightAnswer;
+}

@@ -1,7 +1,7 @@
-#ifndef FUNC
-#define FUNC
+#ifndef FUNC_H_
+#define FUNC_H_
 
-#ifndef GVAR
+#ifndef GVAR_H_
 #include "gVar.h"
 #endif
 
@@ -17,13 +17,14 @@ namespace Func{
     void Close();
     SDL_Texture* loadImg(std::string path);
 
-    void log(std::string mgs);
-    void ImgsData();
+    //void log(std::string mgs ,bool error = false , std::ostream &os = std::cout);
+    
+
 
     bool inRange(int x, int a, int b);
     bool inRange(int x, int y, int a, int b);
     bool avaiIndex(int i, int r, int j, int c);
-    
+    void log(std::string mgs,void* from = NULL, bool error = false, std::ostream &os = std::cout);
 
     struct Vector{
         int x;
@@ -48,8 +49,8 @@ namespace Func{
             set(other.x, other.y);
         }
 
-        void operator+(const Vector& other){
-            set(x + other.x, y + other.y);
+        Vector operator+(const Vector& other){
+            return Vector(x + other.x, y + other.y);
         }
 
         Vector operator-(const Vector& other){
@@ -80,11 +81,11 @@ namespace Func{
         Vector& operator[] (int x){
             switch (x)
             {
-                case 0:
-                    return up;
-                case 1:
-                    return down;
                 case 2:
+                    return up;
+                case 0:
+                    return down;
+                case 1:
                     return left;
                 case 3:
                     return right;
@@ -103,11 +104,33 @@ namespace Func{
             texture = NULL;
             rect = {0,0,0,0};
         }
+        ~MyTexture(){
+            if(texture != NULL){
+                Func::log("Destroying Texture");
+                SDL_DestroyTexture(texture);
+                texture = NULL;
+            }
+        }
     };
 
-    Vector* randUnion(int r, int c);
+    std::vector< std::vector<int>> randUnion(int r, int c);
     void randnNum(int n, std::vector<int>& id);
-    void parseToTexture(SDL_Texture* dsTexture,const SDL_Rect & dsRect, SDL_Texture* srcTexture, const SDL_Rect &srcRect);
+    SDL_Texture* creatTransparentTexture(Uint32 format, int w, int h);
+    SDL_Texture* convertTextureToTarget(SDL_Texture* texture, SDL_Rect* rect = NULL, bool destroy = true);
+    
+    SDL_Texture* parseToTexture(MyTexture* dsTexture,const SDL_Rect *dsRect, SDL_Texture* srcTexture, const SDL_Rect *srcRect);
+    SDL_Texture* parseToTextureEx(MyTexture* dsTexture,const SDL_Rect*  dsRect, SDL_Texture* srcTexture, const SDL_Rect* srcRect, const double angle, const SDL_Point* center,const SDL_RendererFlip flip);
+    
+    
+    
+    SDL_Texture* resizeTexture(SDL_Texture* origin, int w, int h, bool destroy = true);
+    SDL_Texture* resizeTextureWithTrapeZoidShape(SDL_Texture* origin, int len, int direct,int orient, bool destroy = false);
+    
+
 }
+
+
 #else
+
+
 #endif

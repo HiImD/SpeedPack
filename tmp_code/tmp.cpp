@@ -1,79 +1,92 @@
-void BaseObj::setRect(int x, int y, int w, int h, int id){
-    if(arr_texture.size() > id){
-        arr_texture[id].rect = {x, y, w, h};
-    }
-}
+void Pack2x4::init(){
+    std::vector< std::vector<int>> something = Func::randUnion(2, 4);
+    int n_fixed = something[2][0];
 
-void BaseObj::setRect(const SDL_Rect &rect, int id){
-    if(arr_texture.size() > id){
-        arr_texture[id].rect = rect;
+    //Sinh ngau nhien vi tri cac FixedBlock de parse vao UP
+    std::vector<Func::Vector> toOtherSize;
+    {
+        std::vector< std::vector<int>> something_copy(something);
+        int i0;
+        int j0;
+        
+        for(int i = 0; i < n_fixed/2; i++){
+            i0 = rand() % 2;
+            j0 = rand() % 4;
+            if(something_copy[i0][j0] != 0 && something_copy[i0][j0] != -1){
+                
+                toOtherSize.push_back(Func::Vector(i0, j0)); 
+                something_copy[i0][j0] = 0;
+            } else {
+                i--;
+            }
+        }
     }
-}
-
-void BaseObj::setPos(int x, int y, int id){
-    if(arr_texture.size() > id){
-        arr_texture[id].rect.x = x;
-        arr_texture[id].rect.y = y;
+    
+    for(int i = 0; i < 2; i++){
+        for(int j = 0; j < 4; j++){
+            switch (something[i][j])
+            {  
+                case 0:
+                    CreatNewBlock(OBJTYPE::PICKABLEBLOCK, i, j);
+                    break;
+                case 1:
+                    CreatNewBlock(OBJTYPE::FIXEDBLOCK, i, j);
+                    break;
+                case 2:
+                    CreatNewBlock(OBJTYPE::FIXEDBLOCK, i, j, 1, 2);
+                    break;
+                case -2:
+                    CreatNewBlock(OBJTYPE::FIXEDBLOCK, i, j, 2, 1);
+                    break;
+                default:
+                    break;
+            }
+            if(something[i][j] != 0 && something[i][j] != -1){
+                parse(3, (FixedBlock* ) table[i][j], false);;
+            }
+        }
     }
+    
+    int i0 ;
+    int j0 ;
+    
+    for(int i = 0; i < n_fixed/2; i++){
+        i0 = rand() % 2;
+        j0 = rand() % 4;
+        if(something[i0][j0] != 0 && something[i0][j0] != -1){
+            if(something[i0][j0] != 0 && something[i0][j0] != -1){
+                parse(0, (FixedBlock*) table[i0][j0]);
+                parse(2, (FixedBlock* ) table[i0][j0], false);
+                
+            }
+            delete table[i0][j0];
+            table[i0][j0] = NULL;
+            switch (something[i0][j0])
+            {  
+                case 1:
+                    CreatNewBlock(OBJTYPE::PICKABLEBLOCK, i0, j0, 1, 1, false);
+                    something[i0][j0] = 0;
+                    break;
+                case 2:
+                    CreatNewBlock(OBJTYPE::PICKABLEBLOCK, i0, j0, 1, 1, false);
+                    something[i0][j0] = 0;
+                    CreatNewBlock(OBJTYPE::PICKABLEBLOCK, i0, j0 + 1, 1, 1, false);
+                    something[i0][j0 + 1] = 0;
+                    break;
+                case -2:
+                    CreatNewBlock(OBJTYPE::PICKABLEBLOCK, i0, j0, 1, 1, false);
+                    something[i0][j0] = 0;
+                    CreatNewBlock(OBJTYPE::PICKABLEBLOCK, i0 + 1, j0, 1, 1, false);
+                    something[i0 + 1][j0] = 0;
+                    break;
+                default:
+                    break;
+                
+            }
+            
+        } else {
+            i--;
+        }
+    } 
+    origin = getTexture();    
 }
-
-void BaseObj::setWH(int w, int h, int id){
-    if(arr_texture.size() > id){
-        arr_texture[id].rect.w = w;
-        arr_texture[id].rect.h = h;
-    }
-}
-
-SDL_Rect BaseObj::getRect(int id){
-    if(arr_texture.size() > id){
-        return arr_texture[id].rect;
-    }
-    return {0,0,0,0};
-}
-
-int BaseObj::getX(int id){
-    if(arr_texture.size() > id){
-        return arr_texture[id].rect.x;
-    }
-    return -1;
-}
-
-int BaseObj::getY(int id){
-    if(arr_texture.size() > id){
-        return arr_texture[id].rect.y;
-    }
-    return -1;
-}
-
-int BaseObj::getH(int id){
-    if(arr_texture.size() > id){
-        return arr_texture[id].rect.h;
-    }
-    return -1;
-}
-
-int BaseObj::getW(int id){
-    if(arr_texture.size() > id){
-        return arr_texture[id].rect.w;
-    }
-    return -1;
-}
-
-void BaseObj::loadImg(std::string path, int id){
-    if(arr_texture.size(int id)){
-        arr_texture[id].texture = Func::loadImg(path);
-    }
-}
-
-void BaseObj::Show(int id){
-    if(arr_texture.size() > id){
-        SDL_RenderCopy(gRenderer, arr_texture[id].texture, NULL, &arr_texture[id].rect);
-    }
-}
-
-void BaseObj::ShowEx(int angle, SDL_Point* center, SDL_RendererFlip flip, int id){
-    if(arr_texture.size() > id){
-        SDL_RenderCopyEx(gRenderer, arr_texture[id].texture, NULL, &arr_texture[id].rect, angle, center, flip);
-    }
-}
-

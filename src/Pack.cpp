@@ -8,7 +8,12 @@ Pack::~Pack(){
     
 }
 
-void Pack::init(){
-    //Func::log("ERROR!!! init from Pack OBJ");
+OBJTYPE Pack::type() const{
+    return OBJTYPE::PACK;
 }
+
+const char* Pack::name() const{
+    return "Pack";
+}
+
 

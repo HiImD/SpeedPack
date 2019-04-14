@@ -1,5 +1,5 @@
-#ifndef FIXEDBLOCK
-#define FIXEDBLOCK
+#ifndef FIXEDBLOCK_H_
+#define FIXEDBLOCK_H_
 
 
 #include "Block.h"
@@ -13,15 +13,18 @@ private:
 protected:
 
 public:
-    FixedBlock();
+    FixedBlock(int row, int col);
+    FixedBlock(int id);
     ~FixedBlock();
 
-    int type();
-    const char* name();
+    OBJTYPE type() const;
+    const char* name() const;
     
     void setSize(int row, int col);
+    int getRow();
+    int getCol();
     void loadImg();
-
+    void Show();
   
 
 };
