@@ -7,8 +7,10 @@ else
     endif
 endif
 
+INCLUDE_PATH = -I./include
 ifeq ($(detected_OS), WINDOWS)
-	LIBRARY_PATH = -L./lib/WINDOWS
+	INCLUDE_PATH +=  -I./include/WINDOWS/SDL2
+	LIBRARY_PATH = -L./lib/WINDOWS/i686
 	EXEC =$(EXECDIR)/main.exe
 endif
 ifeq ($(detected_OS), LINUX)
@@ -25,12 +27,7 @@ SRCDIR = ./src
 SRCS = $(wildcard $(SRCDIR)/*.cpp)
 EXECDIR = ./bin
 
-
-
 BUILDDIR = ./build
-INCLUDE_PATH = -I./include -I./include/SDL2 -I./include/SDL2_TFF -I./include/SDL2_image
-
-
 
 OBJS = $(subst $(SRCDIR),$(BUILDDIR),$(SRCS))
 OBJS := $(OBJS:cpp=o)

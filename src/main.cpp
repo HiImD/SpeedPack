@@ -1,3 +1,8 @@
+#define SDL_MAIN_HANDLED
+#if defined(__WIN32__)
+#define main WinMain
+#endif
+
 #include "GameSpeedPack.h"
 #include "AutoComponent_Vertical.h"
 #include "Menu.h"
@@ -9,8 +14,6 @@ TTF_Font* gFont = nullptr;
 SDL_Event events;
 int SCREEN_HEIGHT = 1000;
 int SCREEN_WIDTH = 1000;
-
-
 
 
 int main(int args, char* argc[]) {

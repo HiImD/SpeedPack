@@ -9,11 +9,10 @@
 #include "MyTexture.h"
 #include "Pack2x4_2.h"
 #include "Pack3_3x2.h"
-#include "TimerComponent.h"
-#include "ButtonComponent.h"
 #include "Menu.h"
 #include "ChangeProgramState.h"
 #include "ScoreBoard.h"
+#include "MyTimer.h"
 #include <time.h>
 
 class GameSpeedPack : public MyObj, public ChangeProgramState {
