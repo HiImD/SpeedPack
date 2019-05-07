@@ -4,9 +4,9 @@ Gõ "make" trong cửa sổ Shell hoặc cmd để compile code
 Gõ "make run" trong cửa sổ Shell hoặc cmd để chơi
 
 
-Giới thiệu về game SpeedPack: 
-Thời gian 1 lượt chơi: 2 phút
-Mục tiêu: Tối đa số điểm đạt được (Sẽ có thông báo khác nhau theo điểm người chơi đạt được khi gameover)
+Giới thiệu về game SpeedPack: /n
+Thời gian 1 lượt chơi: 2 phút \n
+Mục tiêu: Tối đa số điểm đạt được (Sẽ có thông báo khác nhau theo điểm người chơi đạt được khi gameover) \n
 					
 Người chơi cần chọn vị trí để đặt camera vào vali sao cho khi vali đóng lại, camera không bị đè lên bởi vật khác trong vali
 Hiện chỉ có 2 lọai vali tương ứng với 10 điểm và 15 điểm nếu người chơi chọn đúng
