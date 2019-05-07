@@ -1,8 +1,7 @@
 # SpeedPack
-Hiện chỉ hỗ trợ Windows và Linux
 
-Gõ "make" ("mingw32-make") trong cửa sổ Shell hoặc cmd để compile code (yêu cầu mingw32-make)
-Gõ "make run"("mingw32-make") trong cửa sổ Shell hoặc cmd để chơi (yêu cầu mingw32-make)
+Gõ "make" trong cửa sổ Shell hoặc cmd để compile code
+Gõ "make run" trong cửa sổ Shell hoặc cmd để chơi
 
 Giới thiệu về game SpeedPack:
 
