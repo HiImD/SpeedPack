@@ -1,9 +1,7 @@
 # SpeedPack
 
 Gõ "make" trong cửa sổ Shell hoặc cmd để compile code
-
 Gõ "make run" trong cửa sổ Shell hoặc cmd để chơi
-
 
 Giới thiệu về game SpeedPack:
 
