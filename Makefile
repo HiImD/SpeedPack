@@ -8,15 +8,17 @@ else
 endif
 
 ifeq ($(detected_OS), WINDOWS)
+	LIBRARY_PATH = -L./lib/WINDOWS
 	EXEC =$(EXECDIR)/main.exe
 endif
 ifeq ($(detected_OS), LINUX)
+	LIBRARY_PATH = -L./lib/LINUX
 	EXEC =$(EXECDIR)/main
 endif
 
 
 CC = g++
-CFLAG = -Wall -std=c++11 -Wl,-subsystem,windows
+CFLAG = -std=c++11 -Wl,-subsystem,windows
 LFLAG = -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
 
 SRCDIR = ./src
@@ -27,7 +29,7 @@ EXECDIR = ./bin
 
 BUILDDIR = ./build
 INCLUDE_PATH = -I./include -I./include/SDL2 -I./include/SDL2_TFF -I./include/SDL2_image
-LIBRARY_PATH = -L./lib
+
 
 
 OBJS = $(subst $(SRCDIR),$(BUILDDIR),$(SRCS))
@@ -51,8 +53,15 @@ run :
 	$(EXEC)
 
 clean :
+ifeq ($(detected_OS), LINUX)
 	rm -rf build
 	mkdir build
+endif
+ifeq ($(detected_OS), WINDOWS)
+	echo $(PROCESSOR_ARCHITECTURE)
+	rmdir /Q /S build
+	mkdir build
+endif	
 
 
 
