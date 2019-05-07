@@ -7,17 +7,16 @@ else
     endif
 endif
 
-INCLUDE_PATH = -I./include
+
 ifeq ($(detected_OS), WINDOWS)
-	INCLUDE_PATH +=  -I./include/WINDOWS/SDL2
-	LIBRARY_PATH = -L./lib/WINDOWS/i686
 	EXEC =$(EXECDIR)/main.exe
 endif
 ifeq ($(detected_OS), LINUX)
-	LIBRARY_PATH = -L./lib/LINUX
 	EXEC =$(EXECDIR)/main
 endif
 
+INCLUDE_PATH =-I./include -I./include/$(detected_OS)/SDL2
+LIBRARY_PATH = -L./lib/$(detected_OS)
 
 CC = g++
 CFLAG = -std=c++11 -Wl,-subsystem,windows
@@ -55,7 +54,6 @@ ifeq ($(detected_OS), LINUX)
 	mkdir build
 endif
 ifeq ($(detected_OS), WINDOWS)
-	echo $(PROCESSOR_ARCHITECTURE)
 	rmdir /Q /S build
 	mkdir build
 endif	
