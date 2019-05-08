@@ -1,5 +1,5 @@
-#define SDL_MAIN_HANDLED
 #if defined(__WIN32__)
+#define SDL_MAIN_HANDLED
 #define main WinMain
 #endif
 
