@@ -1,4 +1,5 @@
 # SpeedPack
+Yêu cầu màn hình FullHD (do window co size 1000x1000)
 
 Gõ "make" trong cửa sổ Shell hoặc cmd để compile code
 Gõ "make run" trong cửa sổ Shell hoặc cmd để chơi
