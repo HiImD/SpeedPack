@@ -20,7 +20,7 @@ LIBRARY_PATH = -L./lib/$(detected_OS)
 
 CC = g++
 CFLAG = -std=c++11 -Wl,-subsystem,windows
-LFLAG = -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf
+LFLAG = -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
 SRCDIR = ./src
 SRCS = $(wildcard $(SRCDIR)/*.cpp)

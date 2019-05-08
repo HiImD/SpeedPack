@@ -101,6 +101,7 @@ void Pack2x4_2::Close() {
 		theta += 5;
 	}
 	else {
+		Mix_PlayChannel(-1, CLOSE_VALI_SOUND, 0);
 		parts[1].loadImg(IMGPATH::PACK::PACK2X4::CLOSE);
 		ParseCamera(1, mouseOnBlock.x, mouseOnBlock.y);
 		for (int i = 0; i < row; i++) {

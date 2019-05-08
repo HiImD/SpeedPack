@@ -11,15 +11,26 @@ SDL_Window* gWindow = NULL;
 SDL_Renderer* gRenderer = NULL;
 SDL_Texture* gTexture = NULL;
 TTF_Font* gFont = nullptr;
+Mix_Chunk* CLOSE_VALI_SOUND = nullptr;
 SDL_Event events;
 int SCREEN_HEIGHT = 1000;
 int SCREEN_WIDTH = 1000;
 
 
+
 int main(int args, char* argc[]) {
 	Func::init();
-	gFont = TTF_OpenFont(FONTPATH, 30);
 	
+	gFont = TTF_OpenFont(FONTPATH, 30);
+	if(gFont == nullptr){
+		SDL_Log("gFont == nullptr ", TTF_GetError());
+	}
+	CLOSE_VALI_SOUND = Mix_LoadWAV(SOUNDPATH::CLOSE_VALI.c_str());
+	if(CLOSE_VALI_SOUND == nullptr){
+		SDL_Log("Load Close vali sound failed! ", Mix_GetError());
+	}
+
+
 	Menu menu(gFont, { 255 , 255, 255, 255 }, {255, 100, 100, 255 });
 	menu.AddButton("st", "START");
 	menu.AddButton("op", "OPTION");

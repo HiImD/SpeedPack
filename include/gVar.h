@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_main.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <SDL_ttf.h>
 #include <vector>
 /*
@@ -27,6 +28,7 @@ extern SDL_Event events;
 extern int SCREEN_HEIGHT;
 extern int SCREEN_WIDTH;
 
+extern Mix_Chunk* CLOSE_VALI_SOUND;
 
 
 
@@ -35,7 +37,6 @@ enum OBJTYPE {
 	MYTEXTURE,
 	GAMESPEEDPACK,
 	COMPONENT,
-    BASEOBJ,
     PACK,
     BLOCK,
 	PACK2X4_2,
@@ -111,7 +112,9 @@ namespace IMGPATH{
 	}
 };
 
-
+namespace SOUNDPATH{
+    static const std::string CLOSE_VALI = "resrc/sound/close_vali.wav";
+}
 
 #else
 #endif

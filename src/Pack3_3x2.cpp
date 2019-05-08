@@ -138,7 +138,7 @@ void Pack3_3x2::Close() {
             theta += 5;
         }
         else {
-			
+			Mix_PlayChannel(-1, CLOSE_VALI_SOUND, 0);
 			parts[1].loadImg(IMGPATH::PACK::PACK3_3X2::BOTTOMRIGHT_CLOSE);
 			ParseCamera(1, mouseOnBlock.x, mouseOnBlock.y);
 			for (int i = 0; i < 3; i++) {
@@ -173,6 +173,7 @@ void Pack3_3x2::Close() {
             theta += 5;
         }
         else {
+			Mix_PlayChannel(-1, CLOSE_VALI_SOUND, 0);
 			for (int i = 0; i < 3; i++) {
 				for (int j = 0; j < 2; j++) {
 					if ((*fiBl.at(i, j)) != nullptr && (*fiBl.at(i, j))->onPart ==2 ) {

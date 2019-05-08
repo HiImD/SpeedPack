@@ -6,7 +6,7 @@ void Func::log(std::string mgs, void* from, bool error, std::ostream &os) {
 
 bool Func::init() {
     bool success = true;
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
         success = false;
         SDL_Log("Fail to init! %s", SDL_GetError());
     } else {
@@ -30,6 +30,11 @@ bool Func::init() {
                     SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xFF);
                 }
 				
+            }
+            if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 )
+            {
+                printf( "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError() );
+                success = false;
             }
 			if (TTF_Init() < 0)
 			{
