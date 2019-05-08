@@ -46,6 +46,7 @@ const char* GameSpeedPack::toString() const {
 	return "GameSpeedPack";
 }
 
+
 GameSpeedPack::GameSpeedPack(): timer(gRenderer, nullptr), scoreBoard(), bonus_point(0), pack(nullptr), state(STATE::HAVENOTINIT), menu(gFont, { 255 , 255, 255, 255 }, { 255, 100, 100, 255 }) {
 	if (gWindow == nullptr) {
 		SDL_Log("gWindow == nullptr");
@@ -87,7 +88,7 @@ GameSpeedPack::~GameSpeedPack() {
 		pack = nullptr;
 	}
 }
-
+//Private
 void GameSpeedPack::Init() {
 	scoreBoard.SetComponentPos(900, 0);
 	scoreBoard.margin = { 10, 10, 10, 10, 10 };
@@ -95,13 +96,13 @@ void GameSpeedPack::Init() {
 	scoreBoard.AutoSort(true);
 
 }
-
+//Public
 void GameSpeedPack::Start() {
 	chain_pack_complete = 0;
 	state = RUNNING;		//Cai game state ve RUNNING  
 	timer.StartCount(120);  //Cai dat lai dong ho dem gio
 }
-
+//Private
 void GameSpeedPack::Run() {
 	SDL_Log("Game Run");
 	bool score_updated = false;
@@ -166,7 +167,7 @@ void GameSpeedPack::Run() {
 		SDL_RenderPresent(gRenderer);
 	}
 }
-
+//Private
 void GameSpeedPack::Pause() {
 	SDL_Log("Game Pause");
 	menu.SetComponentPos(-SCREEN_WIDTH/2 + pack->GetComponentXPos() - menu.GetComponentWSize()/2, 100);
@@ -214,7 +215,7 @@ void GameSpeedPack::Pause() {
 		SDL_RenderPresent(gRenderer);
 	}
 }
-
+//Private
 void GameSpeedPack::Resume() {
 	SDL_Log("Game Resume");
 	state = RESUMING;
@@ -254,7 +255,7 @@ void GameSpeedPack::Resume() {
 		SDL_RenderPresent(gRenderer);
 	}
 }
-
+//Private
 void GameSpeedPack::Restart() {
 	if (pack != nullptr) {
 		delete pack;
@@ -264,7 +265,7 @@ void GameSpeedPack::Restart() {
 	scoreBoard.StartOver();
 	Start();
 }
-
+//Private
 void GameSpeedPack::GameOver() {
 	short show_stage = 0;
 	bool slided = false;
@@ -345,11 +346,11 @@ void GameSpeedPack::GameOver() {
 	}
 	
 }
-
+//Public
 void GameSpeedPack::Stop() {
 	state = STOP;
 }
-
+//Private
 void GameSpeedPack::CreateNewPack(bool compulsory) {
 	if (compulsory && pack != nullptr) {
 		delete pack;
