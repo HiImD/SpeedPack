@@ -21,3 +21,6 @@ Có thể nhấn Esc để tạm dừng và hiện Menu trong lúc chơi
 Có thể điều khiển trên menu bằng chuột hoặc bàn phím
 
 Hiện lựa chọn Option trong menu chưa khả dụng 
+
+* DEMO
+![](demo.gif)
