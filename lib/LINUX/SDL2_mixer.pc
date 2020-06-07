@@ -1,6 +1,6 @@
-prefix=/opt/local/i686-w64-mingw32
+prefix=/usr
 exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
+libdir=${prefix}/lib/x86_64-linux-gnu
 includedir=${prefix}/include
 
 Name: SDL2_mixer
